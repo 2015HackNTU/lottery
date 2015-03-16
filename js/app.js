@@ -62,64 +62,106 @@ function prize(myData, num) {
 	var toSock       = parseInt(myData.notebook) + parseInt(myData.pen) + parseInt(myData.flyingDisk) + parseInt(myData.poker) + parseInt(myData.sticker) + parseInt(myData.sock);
 	var toHacklcd    = parseInt(myData.notebook) + parseInt(myData.pen) + parseInt(myData.flyingDisk) + parseInt(myData.poker) + parseInt(myData.sticker) + parseInt(myData.sock) + parseInt(myData.hacklcd);
 	if(0 <= num && num < toNotebook)
-		updateData("notebook", parseInt(myData.notebook) - 1);
+		updateData("notebook", parseInt(myData.notebook) - 1, myData);
 	else if(toNotebook <= num && num < toPen)
-		updateData("pen", parseInt(myData.pen) - 1);
+		updateData("pen", parseInt(myData.pen) - 1, myData);
 	else if(toPen <= num && num < toFlyingDisk)
-		updateData("flyingDisk", parseInt(myData.flyingDisk) - 1);
+		updateData("flyingDisk", parseInt(myData.flyingDisk) - 1, myData);
 	else if(toFlyingDisk <= num && num < toPoker)
-		updateData("poker", parseInt(myData.poker) - 1);
+		updateData("poker", parseInt(myData.poker) - 1, myData);
 	else if(toPoker <= num && num < toSticker)
-		updateData("sticker", parseInt(myData.sticker) - 1);
+		updateData("sticker", parseInt(myData.sticker) - 1, myData);
 	else if(toSticker <= num && num < toSock)
-		updateData("sock", parseInt(myData.sock) - 1);
+		updateData("sock", parseInt(myData.sock) - 1, myData);
 	else
-		updateData("hacklcd", parseInt(myData.hacklcd) - 1);
+		updateData("hacklcd", parseInt(myData.hacklcd) - 1, myData);
 }
 
-function updateData(type, num) {
+function updateData(type, num, myData) {
 	var rootRef = new Firebase('https://hackntulottery.firebaseio.com/');
 	var dataRef = rootRef.child("data");
 	if(type == "notebook") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	notebook: num
-		// });
+		dataRef.set({
+			notebook: num,
+			pen: myData.pen,
+			flyingDisk: myData.flyingDisk,
+			poker: myData.poker,
+			sticker: myData.sticker,
+			sock: myData.sock,
+			hacklcd: myData.hacklcd
+		});
 	}
 	else if(type == "pen") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	pen: num
-		// });
+		dataRef.set({
+			notebook: myData.notebook,
+			pen: num,
+			flyingDisk: myData.flyingDisk,
+			poker: myData.poker,
+			sticker: myData.sticker,
+			sock: myData.sock,
+			hacklcd: myData.hacklcd
+		});
 	}
 	else if(type == "flyingDisk") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	flyingDisk: num
-		// });
+		dataRef.set({
+			notebook: myData.notebook,
+			pen: myData.pen,
+			flyingDisk: num,
+			poker: myData.poker,
+			sticker: myData.sticker,
+			sock: myData.sock,
+			hacklcd: myData.hacklcd
+		});
 	}
 	else if(type == "poker") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	poker: num
-		// });
+		dataRef.set({
+			notebook: myData.notebook,
+			pen: myData.pen,
+			flyingDisk: myData.flyingDisk,
+			poker: num,
+			sticker: myData.sticker,
+			sock: myData.sock,
+			hacklcd: myData.hacklcd
+		});
 	}
 	else if(type == "sticker") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	sticker: num
-		// });
+		dataRef.set({
+			notebook: myData.notebook,
+			pen: myData.pen,
+			flyingDisk: myData.flyingDisk,
+			poker: myData.poker,
+			sticker: num,
+			sock: myData.sock,
+			hacklcd: myData.hacklcd
+		});
 	}
 	else if(type == "sock") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	sock: num
-		// });
+		dataRef.set({
+			notebook: myData.notebook,
+			pen: myData.pen,
+			flyingDisk: myData.flyingDisk,
+			poker: myData.poker,
+			sticker: myData.sticker,
+			sock: num,
+			hacklcd: myData.hacklcd
+		});
 	}
 	else if(type == "hacklcd") {
 		console.log("prize = " + type);
-		// dataRef.update({
-		// 	hacklcd: num
-		// });
+		dataRef.set({
+			notebook: myData.notebook,
+			pen: myData.pen,
+			flyingDisk: myData.flyingDisk,
+			poker: myData.poker,
+			sticker: myData.sticker,
+			sock: myData.sock,
+			hacklcd: num
+		});
 	}
 }
