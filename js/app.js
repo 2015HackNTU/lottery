@@ -11,13 +11,13 @@ $(function() {
 		var sockNum = $('#sockNum').val();
 		var hachlcdNum = $('#hachlcdNum').val();
 		dataRef.set({
-			notebook: notebookNum,
-			pen: penNum,
-			flyingDisk: flyingDiskNum,
-			poker: pokerNum,
-			sticker: stickerNum,
-			sock: sockNum,
-			hacklcd: hachlcdNum
+			"notebook": notebookNum,
+			"pen": penNum,
+			"flyingDisk": flyingDiskNum,
+			"poker": pokerNum,
+			"sticker": stickerNum,
+			"sock": sockNum,
+			"hacklcd": hachlcdNum
 		});
 	});
 
@@ -30,8 +30,52 @@ $(function() {
 			prize(newData, pivot);
 			console.log("pivot = " + pivot);
 		}, function (errorObject) {
-	  		console.log("The read failed: " + errorObject.code);
+			console.log("The read failed: " + errorObject.code);
 		});
+	});
+
+	$('#take').on("click", function(){
+		var rootRef = new Firebase('https://hackntulottery.firebaseio.com/');
+		var dataRef = rootRef.child("data");
+		var item = $('#prize_content').data().name;
+		var num = $('#prize_content').data().num;
+		console.log(item);
+		console.log(num);
+		if(item == "notebook") {
+			dataRef.update({
+				"notebook": num
+			});
+		}
+		else if(item == "pen") {
+			dataRef.update({
+				"pen": num
+			});
+		}
+		else if(item == "flyingDisk") {
+			dataRef.update({
+				"flyingDisk": num
+			});
+		}
+		else if(item == "poker") {
+			dataRef.update({
+				"poker": num
+			});
+		}
+		else if(item == "sticker") {
+			dataRef.update({
+				"sticker": num
+			});
+		}
+		else if(item == "sock") {
+			dataRef.update({
+				"sock": num
+			});
+		}
+		else {
+			dataRef.update({
+				"hacklcd": num
+			});
+		}
 	});
 });
 
@@ -78,90 +122,39 @@ function prize(myData, num) {
 }
 
 function updateData(type, num, myData) {
-	var rootRef = new Firebase('https://hackntulottery.firebaseio.com/');
-	var dataRef = rootRef.child("data");
 	if(type == "notebook") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: num,
-			pen: myData.pen,
-			flyingDisk: myData.flyingDisk,
-			poker: myData.poker,
-			sticker: myData.sticker,
-			sock: myData.sock,
-			hacklcd: myData.hacklcd
-		});
+		$('#prize_content').text("恭喜獲得一本筆記本");
+		$('#prize_content').data({name: "notebook", num: num});
 	}
 	else if(type == "pen") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: myData.notebook,
-			pen: num,
-			flyingDisk: myData.flyingDisk,
-			poker: myData.poker,
-			sticker: myData.sticker,
-			sock: myData.sock,
-			hacklcd: myData.hacklcd
-		});
+		$('#prize_content').text("恭喜獲得一支Microsoft的筆");
+		$('#prize_content').data({name: "pen", num: num});
 	}
 	else if(type == "flyingDisk") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: myData.notebook,
-			pen: myData.pen,
-			flyingDisk: num,
-			poker: myData.poker,
-			sticker: myData.sticker,
-			sock: myData.sock,
-			hacklcd: myData.hacklcd
-		});
+		$('#prize_content').text("恭喜獲得一個飛盤");
+		$('#prize_content').data({name: "flyingDisk", num: num});
 	}
 	else if(type == "poker") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: myData.notebook,
-			pen: myData.pen,
-			flyingDisk: myData.flyingDisk,
-			poker: num,
-			sticker: myData.sticker,
-			sock: myData.sock,
-			hacklcd: myData.hacklcd
-		});
+		$('#prize_content').text("恭喜獲得一副撲克牌");
+		$('#prize_content').data({name: "poker", num: num});
 	}
 	else if(type == "sticker") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: myData.notebook,
-			pen: myData.pen,
-			flyingDisk: myData.flyingDisk,
-			poker: myData.poker,
-			sticker: num,
-			sock: myData.sock,
-			hacklcd: myData.hacklcd
-		});
+		$('#prize_content').text("恭喜獲得一張facebook的貼紙");
+		$('#prize_content').data({name: "sticker", num: num});
 	}
 	else if(type == "sock") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: myData.notebook,
-			pen: myData.pen,
-			flyingDisk: myData.flyingDisk,
-			poker: myData.poker,
-			sticker: myData.sticker,
-			sock: num,
-			hacklcd: myData.hacklcd
-		});
+		$('#prize_content').text("恭喜獲得一雙襪子");
+		$('#prize_content').data({name: "sock", num: num});
 	}
 	else if(type == "hacklcd") {
 		console.log("prize = " + type);
-		dataRef.set({
-			notebook: myData.notebook,
-			pen: myData.pen,
-			flyingDisk: myData.flyingDisk,
-			poker: myData.poker,
-			sticker: myData.sticker,
-			sock: myData.sock,
-			hacklcd: num
-		});
+		$('#prize_content').text("恭喜獲得一枚客製化車宣");
+		$('#prize_content').data({name: "hacklcd", num: num});
 	}
 }
