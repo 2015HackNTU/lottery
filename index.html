@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+  	<meta name="author" content="2015HackNTU">
+  	<meta property="og:title" content="2015黑客週 抽獎網頁">
+  	<link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+  	<link rel="stylesheet" type="text/css" href="./css/main.css">
+  	<title>2015HackNTU</title>
+  	<script src="https://cdn.firebase.com/js/client/2.0.3/firebase.js"></script>
+  	<script src="./bower_components/jquery/dist/jquery.js"></script>
+  	<script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  	<script src="./js/app.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<h2>2015黑客週 抽獎網頁</h2>
+		<div class="row" style="margin-top: 10%;">
+			<div class="col-md-8">
+				<table class="table">
+			  		<thead>
+			            <tr>
+				            <th>項目</th>
+				            <th>筆記本</th>
+				            <th>Microsoft筆</th>
+				            <th>飛盤</th>
+				            <th>鋪克牌</th>
+				            <th>Facebook貼紙</th>
+				            <th>特別襪子</th>
+				            <th>客製化車宣</th>
+				            <th>total</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			        	<tr>
+			        		<td>剩餘數量</td>
+			        		<td id="notebook">200</td>
+			        		<td id="pen">25</td>
+			        		<td id="flyingDisk">1</td>
+			        		<td id="poker">1</td>
+			        		<td id="sticker">5</td>
+			        		<td id="sock">1</td>
+			        		<td id="hacklcd">5</td>
+			        		<td id="total">238</td>
+			        	</tr>
+			        </tbody>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<button type="button" class="big btn btn-success btn-lg">抽獎！</button>
+				<button type="button" class="big btn btn-danger btn-lg" data-toggle="modal" data-target="#resetData">重新輸入</button>
+			</div>
+		</div>
+
+		<div class="modal fade" id="resetData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">重新輸入</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+						    <label for="notebookNum">筆記本</label>
+						    <input type="text" class="form-control" id="notebookNum" placeholder="200">
+						</div>
+						<div class="form-group">
+						    <label for="penNum">Microsoft筆</label>
+						    <input type="text" class="form-control" id="penNum" placeholder="200">
+						</div>
+						<div class="form-group">
+						    <label for="flyingDiskNum">飛盤</label>
+						    <input type="text" class="form-control" id="flyingDiskNum" placeholder="200">
+						</div>
+						<div class="form-group">
+						    <label for="pokerNum">撲克牌</label>
+						    <input type="text" class="form-control" id="pokerNum" placeholder="200">
+						</div>
+						<div class="form-group">
+						    <label for="stickerNum">Facebook貼紙</label>
+						    <input type="text" class="form-control" id="stickerNum" placeholder="200">
+						</div>
+						<div class="form-group">
+						    <label for="sockNum">特別襪子</label>
+						    <input type="text" class="form-control" id="sockNum" placeholder="200">
+						</div>
+						<div class="form-group">
+						    <label for="hachlcdNum">客製化車宣</label>
+						    <input type="text" class="form-control" id="hachlcdNum" placeholder="200">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal" id="reset">確認</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
